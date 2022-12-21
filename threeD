@@ -1,0 +1,38 @@
+//npm install three
+
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+
+
+mounted() {
+  // Create a three.js scene
+  this.scene = new THREE.Scene();
+
+  // Create a three.js perspective camera
+  this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+  this.camera.position.z = 5;
+
+  // Create a three.js renderer and append it to the DOM
+  this.renderer = new THREE.WebGLRenderer();
+  this.renderer.setSize( window.innerWidth, window.innerHeight );
+  this.$el.appendChild( this.renderer.domElement );
+
+  // Load a 3D model using the GLTFLoader
+  const loader = new GLTFLoader();
+  loader.load( '/path/to/model.gltf', ( gltf ) => {
+    this.scene.add( gltf.scene );
+  } );
+}
+
+
+beforeDestroy() {
+  this.renderer.dispose();
+  this.renderer.forceContextLoss();
+  this.renderer = null;
+  this.scene = null;
+}
+
+updated() {
+  this.renderer.render( this.scene, this.camera );
+}
+
