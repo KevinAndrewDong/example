@@ -1,0 +1,60 @@
+npm install axios
+
+
+import axios from 'axios'
+
+export default {
+  // 组件选项
+}
+
+
+<script>
+export default {
+  methods: {
+    async getData() {
+      try {
+        const response = await axios.request({
+          url: 'https://example.com/api/endpoint',
+          method: 'get'
+        })
+        console.log(response.data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+  }
+}
+</script>
+
+
+
+<script>
+export default {
+  methods: {
+    async getData() {
+      try {
+        const response = await axios.request({
+          baseURL: 'https://api1.example.com',
+          url: '/endpoint',
+          method: 'get'
+        })
+        console.log(response.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async getOtherData() {
+      try {
+        const response = await axios.request({
+          baseURL: 'https://api2.example.com',
+          url: '/endpoint',
+          method: 'get'
+        })
+        console.log(response.data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+  }
+}
+</script>
