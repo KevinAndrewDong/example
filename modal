@@ -1,0 +1,70 @@
+<template>
+  <div>
+    <h1>Parent Component</h1>
+    <p>Some content in the parent component</p>
+    <!-- This is the slot where the child component will be rendered -->
+    <child-component></child-component>
+  </div>
+</template>
+
+<script>
+import ChildComponent from './ChildComponent.vue'
+
+export default {
+  name: 'ParentComponent',
+  components: {
+    ChildComponent
+  }
+}
+</script>
+
+
+<template>
+  <div>
+    <!-- Button to trigger the modal -->
+    <button @click="showModal = true">Show Modal</button>
+
+    <!-- Modal element -->
+    <div v-if="showModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <h2>Modal Title</h2>
+        <p>Modal content</p>
+
+        <!-- Button to close the modal -->
+        <button @click="showModal = false">Close</button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'MyComponent',
+  data() {
+    return {
+      showModal: false
+    }
+  }
+}
+</script>
+
+<style>
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+}
+</style>
